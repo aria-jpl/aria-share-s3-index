@@ -97,7 +97,7 @@ html {
 .main-wrapper #commandbar #refresh {
 	background-image: url('/index-style/icons/refresh.gif');
 }
-.main-wrapper #commandbar #home {
+.main-wrapper #commandbar #home-btn {
 	background-image: url('/index-style/icons/home.gif');
 }
 .main-wrapper #footer {

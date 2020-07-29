@@ -356,7 +356,7 @@ function renderTableHeader() {
 
 function renderCommandbar(item) {
   var row = '';
-  row += '<a href="/" id="home">home</a>';
+  row += '<a href="/" id="home-btn">home</a>';
   row += '<a href="' + item.href + '" id="parent">up</a>';
   row += '<a href="' + $(location).attr("href") + '" id="refresh">refresh</a>';
   return row;
