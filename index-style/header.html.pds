@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>download.recurser.com</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="noarchive" name="robots" />
+    <link href="/favicon.ico" rel="shortcut icon" />
+    <link href="/.index-style/style.css" media="screen,projection" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+
+      // Set the path heading
+      var location = decodeURI(document.location.pathname);
+      var segments = location.split("/");
+      var breadcrumbs = '/';
+      var currentPath = "/";
+      for (var i=0; i<segments.length; i++) {
+        if (segments[i] != '') {
+          currentPath += segments[i] + '/';
+          breadcrumbs += '<a href="' +  currentPath + '">' + segments[i] + '</a>/';
+        }
+      }
+      document.title = document.domain + ':' + location;
+      $('#folder').html(breadcrumbs);
+      
+      // Hide the 'parent' link if we're at the top level
+      if (location == '/') $('#parent').hide();
+           
+      // Set header cell widths
+      $('hr').parent().remove();
+      var headers = $('th');
+      // First column should be the icon
+      $(headers[0]).addClass('icon');
+      // Last two columns should be 'date' and 'size' - no way to be sure really so this is a bit of a hack
+      $(headers[headers.length-1]).addClass('size');
+      $(headers[headers.length-2]).addClass('date');
+      
+      // Setup row hover
+      $('tr').mouseover(function(){this.className="hover"}).mouseout(function(){this.className=""});
+      $('td:has(a)').addClass('name');
+
+      // Refresh button
+      $('a#refresh').click(function(){window.location.reload(true);return false;});
+    });
+    </script>
+  </head>
+  <body>
+      <div>
+          <!-- Begin PDS Header -->
+          <table>
+            <tr>
+              <td>
+                <a href="/"><img src="/.index-style/icons/nasa-logo.gif" width="60" height="50" border="0" alt="NASA Logo" /></a>
+              </td>
+              <td>
+                <a href="/">PDS: The Planetary Data System<br/>Backup Repository</a>
+              </td>
+              <td width="400">&nbsp;</td>
+              <td>
+                <ul>
+                  <br/>
+                  <li><a href="http://www.nasa.gov">NASA Portal</a></li>
+                  <li><a href="http://pds.nasa.gov/contact/feedback.cfm">Feedback</a></li>
+                  <li><a href="http://pds.nasa.gov/tools/phonebook/phonebook.cfm">Phone Book</a></li>
+                </ul>
+              </td>
+            </tr>
+          </table>
+          <!-- End PDS Header -->
+          <div id="commandbar">
+              <a href="/" id="home">home</a>
+              <a href="../" id="parent">up</a>
+              <a href="#" id="refresh">refresh</a>
+          </div>
+      <div id="files">
+            <h2>
+                Location: <span id="folder"></span>
+            </h2>
